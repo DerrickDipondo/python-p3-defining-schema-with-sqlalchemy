@@ -1,9 +1,15 @@
 # lib/sqlalchemy_sandbox.py
 
 from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
+
+
+engine = create_engine('sqlite:///students.db')
+Base.metadata.create_all(engine)
+
+
 
 class Student(Base):
     __tablename__ = 'students'
@@ -14,3 +20,5 @@ class Student(Base):
 if __name__ == '__main__':
     engine = create_engine('sqlite:///students.db')
     Base.metadata.create_all(engine)
+
+    
